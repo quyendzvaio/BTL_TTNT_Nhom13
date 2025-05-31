@@ -23,16 +23,17 @@ Dự án học máy dự đoán giá nhà sử dụng mô hình Random Forest Re
 python -m venv venv
 source venv/bin/activate      # macOS/Linux
 venv\\Scripts\\activate       # Windows
-Bước 2: Cài đặt thư viện cần thiết
-bash
-Luôn hiển thị chi tiết
+```
 
-Sao chép
+### Bước 2: Cài đặt thư viện cần thiết
+```bash
 pip install -r requirements.txt
-🚀 Chạy chương trình
 
-✅ Cách 1: Chạy toàn bộ pipeline
-bash
+🚀 Chạy chương trình
+```
+
+#### ✅ Cách 1: Chạy toàn bộ pipeline
+```bash
 python main.py
 Kết quả:
 
@@ -43,9 +44,9 @@ Hiển thị biểu đồ giá trị dự đoán vs giá trị thực
 Lưu mô hình vào models/model.joblib
 
 Ghi đánh giá vào outputs/metrics.txt
-
-✅ Cách 2: Phân tích dữ liệu (EDA)
-bash
+```
+#### ✅ Cách 2: Phân tích dữ liệu (EDA)
+```bash
 jupyter notebook
 Mở file eda.ipynb để khám phá dữ liệu.
 
@@ -55,19 +56,20 @@ Chương trình sẽ hiển thị biểu đồ đường:
 Trục X: index các mẫu (đã sắp xếp theo SalePrice)
 
 Trục Y: giá trị thực tế và giá trị dự đoán
+```
 
-📦 Yêu cầu hệ thống
-Python >= 3.7
+## 📦 Yêu cầu hệ thống
+`Python >= 3.7`
 
-Các thư viện trong requirements.txt
+Các thư viện trong `requirements.txt`
 
-📌 Ghi chú
-Đảm bảo file train.csv nằm trong thư mục data/
+## 📌 Ghi chú
+Đảm bảo file `train.csv` nằm trong thư mục data/
 
-Có thể mở rộng dự án để hỗ trợ dự đoán dữ liệu mới bằng file predict.py
+Có thể mở rộng dự án để hỗ trợ dự đoán dữ liệu mới bằng file `predict.py`
 
-Có thể đóng gói bằng Streamlit nếu muốn giao diện
+Có thể đóng gói bằng `Streamlit` nếu muốn giao diện
 
-📧 Liên hệ
+## 📧 Liên hệ
 Tác giả: Nhóm 13
 Liên hệ: https://github.com/quyendzvaio
