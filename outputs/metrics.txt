@@ -1,0 +1,3 @@
+Best Parameters: {'regressor__max_depth': None, 'regressor__min_samples_split': 2, 'regressor__n_estimators': 100}
+MSE: 851463462.1900198
+R2: 0.8889925357552335
