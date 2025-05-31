@@ -4,28 +4,7 @@ Dự án học máy dự đoán giá nhà sử dụng mô hình Random Forest Re
 
 ## 📁 Cấu trúc thư mục
 
-house_price_prediction/
-│
-├── data/
-│ └── train.csv # Dữ liệu đầu vào
-│
-├── models/
-│ └── model.joblib # Mô hình đã huấn luyện (tự động tạo)
-│
-├── outputs/
-│ └── metrics.txt # File lưu MSE và R² (tự động tạo)
-│
-├── src/
-│ ├── data_loader.py # Load dữ liệu
-│ ├── preprocessing.py # Tiền xử lý
-│ ├── train.py # Train mô hình
-│ ├── evaluate.py # Đánh giá mô hình và vẽ biểu đồ
-│ └── utils.py # Hàm tiện ích
-│
-├── eda.ipynb # Phân tích dữ liệu (EDA)
-├── main.py # Chạy toàn bộ pipeline
-└── requirements.txt # Danh sách thư viện
-
+![alt text](image.png)
 ## 🧠 Mô tả pipeline
 
 1. Đọc và làm sạch dữ liệu (`data_loader.py`)
