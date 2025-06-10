@@ -37,7 +37,8 @@ numeric_transformer = Pipeline([
 
 categorical_transformer = Pipeline([
     ("imputer", SimpleImputer(strategy="constant", fill_value="None")),
-    ("encoder", OneHotEncoder(handle_unknown="ignore", sparse_output=False))
+    ("encoder", OneHotEncoder(handle_unknown="ignore", sparse_output=False)),
+    ("scaler", StandardScaler())
 ])
 
 preprocessor = ColumnTransformer([
@@ -105,7 +106,7 @@ y_pred = best_model.predict(X_test)
 mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 
-print("[5] Đánh giá mô hình:")
+print("Đánh giá mô hình:")
 print("-> Best Parameters:", grid_search.best_params_)
 print(f"-> MSE: {mse:.2f}")
 print(f"-> R^2: {r2:.2f}")

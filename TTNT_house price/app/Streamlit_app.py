@@ -9,8 +9,7 @@ MODEL_PATH = "models/rf_model.pkl"
 model = joblib.load(MODEL_PATH)
 
 # Tên các feature đã chọn khi huấn luyện
-FEATURES = ['OverallQual', 'GrLivArea', 'GarageCars', 'GarageArea', 'TotalBsmtSF',
-            '1stFlrSF', 'FullBath', 'TotRmsAbvGrd', 'YearBuilt', 'YearRemodAdd']
+FEATURES =  ['OverallQual', 'GrLivArea', 'GarageCars', 'GarageArea', 'TotalBsmtSF', '1stFlrSF', 'ExterQual_TA', 'FullBath', 'BsmtQual_Ex', 'TotRmsAbvGrd']
 
 # Giao diện nhập liệu
 st.title("🏡 Dự đoán giá nhà")
