@@ -62,9 +62,9 @@ streamlit run app/streamlit_app.py
 
 Dự án hiện hiển thị độ tin cậy giả định (R² \~ 85%) để người dùng có cảm nhận về chất lượng mô hình. Nếu đầu vào là tất cả 0, dự đoán sẽ trả về 0 và cảnh báo độ tin cậy rất thấp.
 
-## 🧪 Notebook EDA
+## 🧪 Notebook
 
-File `show_data.ipynb` giúp trực quan dữ liệu trước và sau tiền xử lý, sử dụng biểu đồ tương quan và PCA.
+File `Data_Report.html` giúp trực quan dữ liệu sử dụng biểu đồ tương quan.
 
 ## 🛠 Công nghệ sử dụng
 
