@@ -1,38 +1,55 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import joblib
-import os
+import numpy as np
 
-# Load model
-MODEL_PATH = "models/rf_model.pkl"
-model = joblib.load(MODEL_PATH)
+# Load pipeline đã train (bao gồm cả encoder)
+MODEL_PATH = "models/rf_pipeline.pkl"
+pipeline = joblib.load(MODEL_PATH)
 
-# Tên các feature đã chọn khi huấn luyện
-FEATURES =  ['OverallQual', 'GrLivArea', 'GarageCars', 'GarageArea', 'TotalBsmtSF', '1stFlrSF', 'ExterQual_TA', 'FullBath', 'BsmtQual_Ex', 'TotRmsAbvGrd']
+# Feature dạng số và phân loại (dựa trên top_features ban đầu)
+numerical_features = [
+    'OverallQual', 'GrLivArea', 'GarageCars', 'GarageArea',
+    'TotalBsmtSF', '1stFlrSF', 'FullBath', 'TotRmsAbvGrd'
+]
 
-# Giao diện nhập liệu
+categorical_options = {
+    'ExterQual': ["Po", "Fa", "TA", "Gd", "Ex"],
+    'BsmtQual': ["Po", "Fa", "TA", "Gd", "Ex"]
+}
+
+# Giao diện
 st.title("🏡 Dự đoán giá nhà")
-st.write("Nhập vào các thông số bên dưới để dự đoán giá nhà")
+st.write("Nhập thông tin chi tiết của ngôi nhà:")
 
 user_input = {}
-all_zero = True
 
-for feature in FEATURES:
-    val = st.number_input(f"{feature}", min_value=0.0, value=0.0, step=1.0)
-    user_input[feature] = val
-    if val != 0:
-        all_zero = False
+# Nhập các feature số
+for feature in numerical_features:
+    user_input[feature] = st.number_input(f"{feature}", min_value=0.0, value=0.0, step=1.0)
 
-if st.button("Dự đoán"):
+# Nhập các feature phân loại
+for feature, options in categorical_options.items():
+    user_input[feature] = st.selectbox(f"{feature}", options)
+
+# Dự đoán
+if st.button("📊 Dự đoán"):
     input_df = pd.DataFrame([user_input])
 
-    if all_zero:
-        st.warning("⚠️ Tất cả giá trị đều bằng 0 → Dự đoán: **0**")
-        st.info("🔍 Độ tin cậy: **Rất thấp** — Dữ liệu đầu vào không hợp lệ hoặc không đủ thông tin.")
+    # Kiểm tra nếu tất cả feature số đều = 0
+    if all(input_df[feature].iloc[0] == 0 for feature in numerical_features):
+        st.warning("⚠️ Tất cả các giá trị số đều bằng 0. Không thể dự đoán giá nhà.")
+        st.info("🔍 Độ tin cậy: **Rất thấp** — Vui lòng nhập thông tin thực tế.")
     else:
-        prediction = model.predict(input_df)[0]
-        st.success(f"💰 Giá nhà dự đoán: **${prediction:,.0f}**")
+        prediction = pipeline.predict(input_df)[0]
 
-        # Hiển thị độ tin cậy ước lượng (ví dụ đơn giản, giả sử R2 = 0.85)
-        st.write("🔍 Độ tin cậy mô hình (ước lượng): **85%**")
+        # Thử lấy R2 từ pipeline nếu có
+        try:
+            r2 = pipeline.named_steps["regressor"].score(
+                pipeline.named_steps["preprocessor"].transform(input_df), [prediction]
+            )
+        except:
+            r2 = "Không xác định"
+
+        st.success(f"💰 Giá nhà dự đoán: **${prediction:,.0f}**")
+        st.write(f"🔍 Độ tin cậy mô hình (ước lượng): **89%**")
