@@ -111,5 +111,27 @@ print("-> Best Parameters:", grid_search.best_params_)
 print(f"-> MSE: {mse:.2f}")
 print(f"-> R^2: {r2:.2f}")
 
+df = pd.DataFrame({
+    'Giá trị thực tế (y_test)': y_test,
+    'Giá trị dự đoán (y_pred)': y_pred
+})
+
+print(df)
+
+plt.figure(figsize=(10, 8))
+plt.scatter(df['Giá trị thực tế (y_test)'], df['Giá trị dự đoán (y_pred)'], color='blue', label='Dự đoán')
+
+min_val = min(min(y_test), min(y_pred))
+max_val = max(max(y_test), max(y_pred))
+plt.plot([min_val, max_val], [min_val, max_val], 'r--', label='Đường tham chiếu: y = x')
+
+plt.xlabel('Giá trị thực tế (y_test)')
+plt.ylabel('Giá trị dự đoán (y_pred)')
+plt.title('Biểu đồ Scatter: So sánh y_test và y_pred')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
 # Lưu mô hình
 joblib.dump(best_model, MODEL_PATH)

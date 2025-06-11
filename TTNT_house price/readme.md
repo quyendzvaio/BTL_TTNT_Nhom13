@@ -16,8 +16,8 @@ Dự án sử dụng mô hình học máy Random Forest để dự đoán giá n
 ├── notebooks/                  # Phân tích và trực quan dữ liệu
 │   └── EDA_Preprocessing.ipynb
 │
-├── outputs/                    # Lưu metric đánh giá mô hình
-│   └── metrics.txt
+├── outputs/                    # Mối tương quan giữa các đặc trưng được chọn
+│   └── correlation_plot.png
 │
 ├── app/                        # Ứng dụng Streamlit
 │   └── streamlit_app.py
@@ -26,7 +26,8 @@ Dự án sử dụng mô hình học máy Random Forest để dự đoán giá n
 │   └── train_model.py
 │
 ├── requirements.txt            # Thư viện cần thiết
-└── README.md                   # Hướng dẫn dự án
+└── README.md                  # Hướng dẫn dự án
+└── Data_Report                  #Khảo sát dữ liệu
 ```
 
 ## 📊 Các bước thực hiện
